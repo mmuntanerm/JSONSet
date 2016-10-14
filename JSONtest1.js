@@ -43,7 +43,7 @@ client.get(mUrl, function (data, response) {
 
 	// Canvi de la funció de filtre en 'calent' directament (canviam el filtre també per adaptar-lo)
 	js1.setRecJSONfilterKeys( {mTipusData:'LAB', mMacro:7, mSublinea:2, mRuta:1, minFrj:0});
-	console.log("Les noves claus de filtratge són:  %s", js1.recFilterKeys)
+	console.log("Les noves claus de filtratge són:  %s", JSON.stringify(js1.recFilterKeys))
 	js1.filterFunc= function(mobj, thisArg){
 			    // console.log(this.mRuta)
 			    // Inside the FilterFunc 'this' is referred to thisArg object
