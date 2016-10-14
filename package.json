@@ -1,8 +1,8 @@
 {
-  "name": "node-client",
+  "name": "JSONSet",
   "version": "1.0.0",
-  "description": "",
-  "main": "test0.js",
+  "description": "Accions on a Array of JSON Objects",
+  "main": "JSONtest1.js",
   "dependencies": {
     "node-rest-client": "^2.0.1"
   },
