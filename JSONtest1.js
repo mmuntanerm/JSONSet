@@ -30,7 +30,7 @@ client.get(mUrl, function (data, response) {
 	console.log("Total de registres FILTRATS de l'objecte JSON: %s ", js1.countFiltered);
 	console.log(js1.dataFiltered)
 
-	js1.toFile='./json_results/HOLEfile.json';
+	js1.toFile='./json_results/WHOLEfile.json';
 	js1.toFileFiltered='./json_results/FILTEREDfile.json';
 
 	// retorna conjunto de registros filtrados, solo los campos seleccionados
