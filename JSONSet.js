@@ -1,6 +1,6 @@
 var fs = require("fs");
 
-// Funció de filtrat
+// filtreRuta : Funció de filtrat -- Exemple de funció que es pot usar - No usada a l'objecte
 function filtreRuta(mobj, thisArg){
     // console.log(this.mRuta)
     sentido = this.mRuta;
@@ -81,13 +81,28 @@ function JSON_ArrayFieldFilter(mObjArray, mapped, byName){
 //
 //  La classe permet escollir els 'camps' que es volen mostrar del total dels camps. Ens podem referir als camps pel seu nom
 // o per l'índex que ocupen dins l'objecte.
-
+// Filter Function is now Dynamic
 module.exports = class JSONSet{
 	constructor(dt){
 		dt = dt  || [];
 		this.data = dt ;
 		this.recFilterKeys = {};  // Record (JSON) Filter Keys.  exemple : {mTipusData:'LAB', mMacro:8, mRuta:1, minFrj:0}
 		this.fieldFilterKeys = {mapped_keys:[], mapped_by_name: false};  // Field (JSON) Filter Keys. Type of Array filter Used.   exemple : { ['8','16','17'], false}
+    this.filterFunc = function (mobj, thisArg){
+					    // Func Filter applied to filter JSON Array
+              // It's possible to redefine it  by assigning a new func to 'filterFunc' property of JSONSet
+					    var sentido = this.mRuta;
+					    var minFrj = this.minFrj;
+					    var macro = this.mMacro;
+					    var tpdia = this.mTipusData;
+					    if ((mobj.Tipodia == tpdia) &&(mobj.Ruta == sentido) &&(mobj.Macro == macro) && (mobj.franja_horaria >= minFrj) ){
+					        return true;
+					    }
+					    else
+					    {
+					        return false;
+					    }
+					}
 
 		}
 
@@ -111,7 +126,7 @@ module.exports = class JSONSet{
 
 	get dataFiltered(){
 		// Returns the data filtered by the filter condition 'setRecJSONfilterKeys'
-		return this.data.filter(filtreRuta,this.recFilterKeys);
+		return this.data.filter(this.filterFunc,this.recFilterKeys);
 	}
 
 	get count(){
